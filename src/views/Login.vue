@@ -4,9 +4,9 @@
 
       <!-- Brand logo-->
       <b-link class="brand-logo">
-        <img style="max-height: 70px;" src="@/assets/images/logo/logo.png" alt="">
+        <img style="max-height: 50px;" src="@/assets/images/logo/logo.png" alt="">
         <h2 class="brand-text text-primary ml-1 mb-5">
-          Federal Ministry of Finance <br> <span class="text-dark h4">Budget and National Planning</span> 
+          Federal Ministry of  <br> <span class="">Finance, Budget and National Planning</span> 
         </h2>
       </b-link>
       <!-- /Brand logo-->
@@ -124,7 +124,8 @@
               </b-form-group>
 
               <!-- submit buttons -->
-              <b-button
+              <router-link :to="'/'">
+                <b-button
                 type="submit"
                 variant="primary"
                 block
@@ -132,6 +133,8 @@
               >
                 Sign in
               </b-button>
+              </router-link>
+             
             </b-form>
           </validation-observer>
 

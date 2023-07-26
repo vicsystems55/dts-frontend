@@ -1,12 +1,25 @@
-export default [
-  {
-    title: 'Home',
-    route: 'home',
-    icon: 'HomeIcon',
-  },
-  {
-    title: 'Second Page',
-    route: 'second-page',
-    icon: 'FileIcon',
-  },
-]
+export default [{
+  title: 'Dashboard',
+  route: 'home',
+  icon: 'HomeIcon',
+},
+{
+  title: 'Submissions',
+  route: 'submissions',
+  icon: 'FileIcon',
+},
+{
+  title: 'Departments',
+  route: 'departments',
+  icon: 'FileIcon',
+},
+{
+  title: 'Notifications',
+  route: 'notifications',
+  icon: 'FileIcon',
+},
+{
+  title: 'Settings',
+  route: 'settings',
+  icon: 'FileIcon',
+}]
