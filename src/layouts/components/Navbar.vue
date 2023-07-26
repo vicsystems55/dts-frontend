@@ -19,9 +19,15 @@
     <!-- Left Col -->
     <div class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex">
       <dark-Toggler class="d-none d-lg-block" />
+
+      <div class="text-center mx-auto">
+
+        <h4 class="btn btn-primary ">The Honourable Ministers Registry / Correspondence</h4>
+      </div>
+
     </div>
 
-    <b-navbar-nav class="nav align-items-center ml-auto">
+    <b-navbar-nav class="nav align-items-center ml-auto ">
       <b-nav-item-dropdown
         right
         toggle-class="d-flex align-items-center dropdown-user-link"

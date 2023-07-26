@@ -69,6 +69,8 @@ const router = new VueRouter({
       },
     },
 
+
+
     {
       path: "/departments",
       name: "departments",
@@ -139,6 +141,28 @@ const router = new VueRouter({
         layout: "full",
       },
     },
+
+    {
+      path: "/submission-success",
+      name: "submission-success",
+      component: () => import("@/views/error/SubmissionSuccess.vue"),
+      meta: {
+        layout: "full",
+      },
+    },
+
+
+    {
+      path: "/track-submission",
+      name: "track-submission",
+      component: () => import("@/views/error/TrackSubmission.vue"),
+      meta: {
+        layout: "full",
+      },
+    },
+
+
+
     {
       path: "*",
       redirect: "error-404",

@@ -26,7 +26,7 @@
             >
               <span class="brand-logo">
                 <b-img
-                  :src="appLogoImage"
+                  :src="'@/assets/images/logo/logo.png'"
                   alt="logo"
                 />
               </span>
