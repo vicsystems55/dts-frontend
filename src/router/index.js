@@ -55,6 +55,21 @@ const router = new VueRouter({
     },
 
     {
+      path: "/submission",
+      name: "submission",
+      component: () => import("@/views/Submission.vue"),
+      meta: {
+        pageTitle: "Submission Details",
+        breadcrumb: [
+          {
+            text: "Submission",
+            active: true,
+          },
+        ],
+      },
+    },
+
+    {
       path: "/create-submission",
       name: "create-submission",
       component: () => import("@/views/CreateSubmission.vue"),
