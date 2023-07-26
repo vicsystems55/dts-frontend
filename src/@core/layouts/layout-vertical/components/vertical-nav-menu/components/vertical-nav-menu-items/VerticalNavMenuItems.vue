@@ -1,11 +1,6 @@
 <template>
   <ul>
-    <component
-      :is="resolveNavItemComponent(item)"
-      v-for="item in items"
-      :key="item.header || item.title"
-      :item="item"
-    />
+    <component :is="resolveNavItemComponent(item)" v-for="item in items" :key="item.header || item.title" :item="item" />
   </ul>
 </template>
 
@@ -31,9 +26,21 @@ export default {
   setup() {
     provide('openGroups', ref([]))
 
+    // eslint-disable-next-line no-shadow
+    const resolveNavItemComponent = item => {
+      if (item.header) return 'vertical-nav-menu-header'
+      if (item.children) return 'vertical-nav-menu-group'
+      if (localStorage.getItem('user_role') == 2 && item.title == 'Departments') return 'd-none'
+      return 'vertical-nav-menu-link'
+
+    }
+
     return {
+
+
       resolveNavItemComponent,
     }
   },
+
 }
 </script>

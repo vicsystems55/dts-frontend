@@ -37,11 +37,13 @@
           lg="12"
           class="px-xl-2 mx-auto"
         >
-          <b-card-title
+        <b-card-title
             title-tag="h4"
             class="font-weight-bold mb-1"
           >
-            Welcome to <br> Enterprise Incoming and Outgoing Mails and Documents Management System" (Tracking and Follow-Up)
+            <span class="text-success h3">Welcome to: </span> <br> Enterprise Incoming and Outgoing Mails and Documents Management System <br> 
+            <span class="text-success h6"> Tracking and Follow-Up</span>
+           
           </b-card-title>
           <b-card-text class="mb-2">
             Please sign-in to your account.
