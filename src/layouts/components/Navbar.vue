@@ -29,9 +29,9 @@
             <p class="user-name font-weight-bolder mb-0">
               John Doe
             </p>
-            <span class="user-status">...</span>
+            <span class="user-status">..</span>
           </div>
-          <b-avatar size="40" variant="light-primary" badge :src="require('@/assets/images/avatars/13-smal.png')"
+          <b-avatar size="40" variant="light-primary" badge :src="require('@/assets/images/avatars/13-small.png')"
             class="badge-minimal" badge-variant="success" />
         </template>
 
@@ -101,7 +101,7 @@ export default {
   },
 
   methods: {
-    logOut() {
+    logout() {
       this.$toast({
         component: ToastificationContent,
         props: {
