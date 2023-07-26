@@ -101,7 +101,7 @@ export default {
   },
 
   methods: {
-    logout() {
+    logOut() {
       this.$toast({
         component: ToastificationContent,
         props: {
