@@ -5,9 +5,9 @@
       <!-- Brand logo-->
       <b-link class="brand-logo">
         <img style="max-height: 50px;" src="@/assets/images/logo/logo.png" alt="">
-        <h2 class="brand-text text-primary ml-1 mb-5">
+        <h5 class="brand-text text-primary ml-1 mb-5">
           Federal Ministry of  <br> <span class="">Finance, Budget and National Planning</span> 
-        </h2>
+        </h5>
       </b-link>
       <!-- /Brand logo-->
 

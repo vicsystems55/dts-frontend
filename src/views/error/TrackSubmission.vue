@@ -2,18 +2,18 @@
   <!-- Error page-->
   <div class="misc-wrapper">
     <b-link class="brand-logo">
-        <img style="max-height: 50px;" src="@/assets/images/logo/logo.png" alt="">
+        <img style="max-height: 50px;" src="@/assets/images/logo/logo.png" alt=""> 
 
-        <!-- <h2 class="brand-text text-primary ml-1 mb-5">
+        <h5 class="brand-text text-primary ml-1 mb-5">
           Federal Ministry of  <br> <span class="">Finance, Budget and National Planning</span> 
-        </h2> -->
+        </h5>
     </b-link>
 
     <div class="misc-inner p-2 p-sm-3">
       <div class="w-100 text-center">
-        <h2 class="mb-1">
-          View status of submission
-        </h2>
+        <h3 class="mb-1">
+         Track and Follow-up your submission
+        </h3>
        
 
         <div class="col-md-12">
