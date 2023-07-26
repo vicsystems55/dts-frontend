@@ -54,6 +54,18 @@
               @submit.prevent
             >
               <!-- email -->
+
+              <b-form-group
+                label="Fullname"
+                label-for="full-name"
+              >
+                  <b-form-input
+                    id="full-name"
+                    v-model="name"
+                    name="fullname"
+                    placeholder="Enter your name"
+                  />
+              </b-form-group>
               <b-form-group
                 label="Email"
                 label-for="login-email"
@@ -113,7 +125,7 @@
               </b-form-group>
 
               <!-- checkbox -->
-              <b-form-group>
+              <!-- <b-form-group>
                 <b-form-checkbox
                   id="remember-me"
                   v-model="status"
@@ -121,7 +133,7 @@
                 >
                   Remember Me
                 </b-form-checkbox>
-              </b-form-group>
+              </b-form-group> -->
 
               <!-- submit buttons -->
               <b-button
@@ -130,15 +142,15 @@
                 block
                 @click="validationForm"
               >
-                Sign in
+                Sign up
               </b-button>
             </b-form>
           </validation-observer>
 
           <b-card-text class="text-center mt-2">
-            <span>New on our platform? </span>
-            <b-link :to="'/register'">
-              <span>&nbsp;Create an account</span>
+            <span>Already have an account? </span>
+            <b-link :to="'/login'">
+              <span>&nbsp;Sign in</span>
             </b-link>
           </b-card-text>
 
@@ -218,6 +230,7 @@ export default {
   data() {
     return {
       status: '',
+      name: '',
       password: '',
       userEmail: '',
       sideImg: require('@/assets/images/pages/login-v2.svg'),
