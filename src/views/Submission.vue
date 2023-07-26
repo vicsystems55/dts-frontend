@@ -39,6 +39,30 @@
     
                       </div>
                   </div>
+
+                  <div class="card m-1">
+                      <div class="card-body ">
+    
+                         <h6>Step 2</h6>
+    
+                      </div>
+                  </div>
+
+                  <div class="card m-1">
+                      <div class="card-body ">
+    
+                         <h6>Step 3</h6>
+    
+                      </div>
+                  </div>
+
+                  <div class="card m-1">
+                      <div class="card-body ">
+    
+                         <h6>Step 4</h6>
+    
+                      </div>
+                  </div>
               </div>
 
 

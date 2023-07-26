@@ -29,9 +29,9 @@
             <p class="user-name font-weight-bolder mb-0">
               John Doe
             </p>
-            <span class="user-status">Admin</span>
+            <span class="user-status">...</span>
           </div>
-          <b-avatar size="40" variant="light-primary" badge :src="require('@/assets/images/avatars/13-small.png')"
+          <b-avatar size="40" variant="light-primary" badge :src="require('@/assets/images/avatars/13-smal.png')"
             class="badge-minimal" badge-variant="success" />
         </template>
 
@@ -93,10 +93,10 @@ export default {
   mounted() {
     if(localStorage.getItem('user_role') == 2){
 
-      dashboardTitle = 'VISITOR'
+      return this.dashboardTitle = 'VISITOR'
 
     }else{
-      dashboardTitle = 'The Honourable Ministers Registry / Correspondence'
+      return this.dashboardTitle = 'The Honourable Ministers Registry / Correspondence'
     }
   },
 
