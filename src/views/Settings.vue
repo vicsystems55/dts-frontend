@@ -1,9 +1,94 @@
 <template>
   <div>
 
+    <b-card-code title="">
+
+      <!-- modal trigger button -->
+
+      <!-- basic modal -->
+      <b-modal
+        id="modal-1"
+        title="Update Office Details"
+        ok-only
+        ok-title="Accept"
+      >
+        <b-card-text>
+          <h5>Check First Paragraph</h5>
+          Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+          Brownie carrot cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie chocolate cake liquorice.
+        </b-card-text>
+      </b-modal>
+
+      <!-- disable animation-->
+      <b-modal
+        id="modal-no-animation"
+        content-class="shadow"
+        title="Disabled Animation"
+        no-fade
+        ok-only
+        ok-title="Accept"
+      >
+        <b-card-text>
+          Chocolate bar jelly dragée cupcake chocolate bar I love donut liquorice.
+          Powder I love marzipan donut candy canes jelly-o.
+          Dragée liquorice apple pie candy biscuit danish lemon drops sugar plum.
+        </b-card-text>
+        <b-alert
+          show
+          variant="success"
+        >
+          <div class="alert-body">
+            Well done! You successfully read this important alert message.
+          </div>
+        </b-alert>
+      </b-modal>
+
+      <!-- modal vertical center -->
+      <b-modal
+        id="modal-center"
+        centered
+        title="Vertically Centered"
+        ok-only
+        ok-title="Accept"
+      >
+        <b-card-text>
+          Croissant jelly-o halvah chocolate sesame snaps.
+          Brownie caramels candy canes chocolate cake marshmallow icing lollipop I love.
+          Gummies macaroon donut caramels biscuit topping danish.
+        </b-card-text>
+      </b-modal>
+
+      <!-- modal backdrop -->
+      <b-modal
+        id="modal-no-backdrop"
+        hide-backdrop
+        ok-only
+        no-close-on-backdrop
+        content-class="shadow"
+        title="Disabled Backdrop"
+        ok-title="Accept"
+      >
+        <b-card-text>
+          <span>We've added the utility class</span>
+          <code>'shadow'</code>
+          <span>to the modal content for added effect.</span>
+        </b-card-text>
+        <b-card-text>
+          Candy oat cake topping topping chocolate cake. Icing pudding jelly beans I love chocolate carrot cake wafer
+          candy canes. Biscuit croissant fruitcake bonbon soufflé.
+        </b-card-text>
+      </b-modal>
+
+      <template #code>
+        {{ codeBasic }}
+      </template>
+    </b-card-code>
+
     <b-card-code title="Administrative Settings">
       <b-tabs>
-        <b-tab title="Departments">
+        <b-tab 
+        active
+        title="Departments">
 
           <div class="row">
             <div class="col-md-6">
@@ -92,11 +177,53 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Department</th>
-                        <th>Status</th>
+                        <th>DEPARMENT</th>
+                        <th>ABBREV.</th>
+                        <th>OFFICER</th>
+                        <th>HEAD</th>
+                        <th></th>
+
                         <th />
                       </tr>
                     </thead>
+                    <tbody>
+                      <tr
+                        v-for="office,key in offices"
+                        :key="office.index"
+                      >
+                        <td>{{ key + 1 }}</td>
+                        <td>{{ office.name }}</td>
+
+                        <td>{{ office.abbrev }}</td>
+
+                        <td >
+                            <span class="badge badge-primary">
+                            {{ office.officer?office.officer.name:'not assigned' }}
+                            </span>
+                        </td>
+                        <td >
+                            <span class="badge badge-primary">
+                            {{ office.parent?office.parent.name:'null' }}
+                            </span>
+                        </td>
+
+                        <td>
+                          <div class="demo-inline-spacing">
+
+                            <b-button
+                              v-ripple.400="'rgba(113, 102, 240, 0.15)'"
+                              v-b-modal.modal-center
+                           
+                              class="bt-sm btn-success "
+                            >
+                              Edit
+                            </b-button>
+
+                          </div>
+                        </td>
+
+                      </tr>
+                    </tbody>
                   </table>
 
                 </div>
@@ -107,22 +234,21 @@
 
         </b-tab>
         <b-tab
-          active
+          
           title="User Accounts"
-        >
-        
-        </b-tab>
+        />
         <b-tab
           title="Disabled"
-          disabled
+          
         >
-          <b-card-text>
-            Carrot cake dragée chocolate.
-          </b-card-text>
-        </b-tab>
-       
-      </b-tabs>
 
+        <div class="form-group">
+            <input type="text" class="form-control">
+        </div>
+          
+        </b-tab>
+
+      </b-tabs>
 
     </b-card-code>
 
@@ -134,7 +260,10 @@
 <script>
 import axios from 'axios'
 import BCardCode from '@core/components/b-card-code'
-import { BTabs, BTab, BCardText } from 'bootstrap-vue'
+import Ripple from 'vue-ripple-directive'
+import {
+  BModal, BButton, VBModal, BAlert, BTabs, BTab, BCardText,
+} from 'bootstrap-vue'
 import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 
 export default {
@@ -143,7 +272,14 @@ export default {
     BTabs,
     BCardText,
     BTab,
+    BButton,
+    BModal,
+    BAlert,
 
+  },
+  directives: {
+    'b-modal': VBModal,
+    Ripple,
   },
   data() {
     return {
