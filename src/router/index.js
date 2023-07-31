@@ -1,53 +1,38 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   scrollBehavior() {
-    return { x: 0, y: 0 };
+    return { x: 0, y: 0 }
   },
   routes: [
     {
-      path: "/",
-      name: "home",
-      component: () => import("@/views/Home.vue"),
+      path: '/',
+      name: 'home',
+      component: () => import('@/views/Home.vue'),
       meta: {
-        pageTitle: "Home",
+        pageTitle: 'Home',
         breadcrumb: [
           {
-            text: "Home",
+            text: 'Home',
             active: true,
           },
         ],
       },
     },
     {
-      path: "/second-page",
-      name: "second-page",
-      component: () => import("@/views/SecondPage.vue"),
+      path: '/second-page',
+      name: 'second-page',
+      component: () => import('@/views/SecondPage.vue'),
       meta: {
-        pageTitle: "Second Page",
+        pageTitle: 'Second Page',
         breadcrumb: [
           {
-            text: "Second Page",
-            active: true,
-          },
-        ],
-      },
-    },
-
-    {
-      path: "/submissions",
-      name: "submissions",
-      component: () => import("@/views/Submissions.vue"),
-      meta: {
-        pageTitle: "Submissions",
-        breadcrumb: [
-          {
-            text: "Submissions",
+            text: 'Second Page',
             active: true,
           },
         ],
@@ -55,14 +40,14 @@ const router = new VueRouter({
     },
 
     {
-      path: "/submission",
-      name: "submission",
-      component: () => import("@/views/Submission.vue"),
+      path: '/submissions',
+      name: 'submissions',
+      component: () => import('@/views/Submissions.vue'),
       meta: {
-        pageTitle: "Submission Details",
+        pageTitle: 'Submissions',
         breadcrumb: [
           {
-            text: "Submission",
+            text: 'Submissions',
             active: true,
           },
         ],
@@ -70,31 +55,14 @@ const router = new VueRouter({
     },
 
     {
-      path: "/create-submission",
-      name: "create-submission",
-      component: () => import("@/views/CreateSubmission.vue"),
+      path: '/submission',
+      name: 'submission',
+      component: () => import('@/views/Submission.vue'),
       meta: {
-        pageTitle: "Create Submission",
+        pageTitle: 'Submission Details',
         breadcrumb: [
           {
-            text: "Create Submission",
-            active: true,
-          },
-        ],
-      },
-    },
-
-
-
-    {
-      path: "/departments",
-      name: "departments",
-      component: () => import("@/views/Departments.vue"),
-      meta: {
-        pageTitle: "Departments",
-        breadcrumb: [
-          {
-            text: "Departments",
+            text: 'Submission',
             active: true,
           },
         ],
@@ -102,14 +70,14 @@ const router = new VueRouter({
     },
 
     {
-      path: "/notifications",
-      name: "notifications",
-      component: () => import("@/views/Notifications.vue"),
+      path: '/create-submission',
+      name: 'create-submission',
+      component: () => import('@/views/CreateSubmission.vue'),
       meta: {
-        pageTitle: "Notifications",
+        pageTitle: 'Create Submission',
         breadcrumb: [
           {
-            text: "Notifications",
+            text: 'Create Submission',
             active: true,
           },
         ],
@@ -117,14 +85,14 @@ const router = new VueRouter({
     },
 
     {
-      path: "/settings",
-      name: "settings",
-      component: () => import("@/views/Settings.vue"),
+      path: '/departments',
+      name: 'departments',
+      component: () => import('@/views/Departments.vue'),
       meta: {
-        pageTitle: "Settings",
+        pageTitle: 'Departments',
         breadcrumb: [
           {
-            text: "Settings",
+            text: 'Departments',
             active: true,
           },
         ],
@@ -132,67 +100,106 @@ const router = new VueRouter({
     },
 
     {
-      path: "/login",
-      name: "login",
-      component: () => import("@/views/Login.vue"),
+      path: '/notifications',
+      name: 'notifications',
+      component: () => import('@/views/Notifications.vue'),
       meta: {
-        layout: "full",
+        pageTitle: 'Notifications',
+        breadcrumb: [
+          {
+            text: 'Notifications',
+            active: true,
+          },
+        ],
       },
     },
 
     {
-      path: "/register",
-      name: "register",
-      component: () => import("@/views/Register.vue"),
+      path: '/settings',
+      name: 'settings',
+      component: () => import('@/views/Settings.vue'),
       meta: {
-        layout: "full",
-      },
-    },
-    {
-      path: "/error-404",
-      name: "error-404",
-      component: () => import("@/views/error/Error404.vue"),
-      meta: {
-        layout: "full",
+        pageTitle: 'Settings',
+        breadcrumb: [
+          {
+            text: 'Settings',
+            active: true,
+          },
+        ],
       },
     },
 
     {
-      path: "/submission-success",
-      name: "submission-success",
-      component: () => import("@/views/error/SubmissionSuccess.vue"),
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/Login.vue'),
       meta: {
-        layout: "full",
+        layout: 'full',
       },
     },
 
-
     {
-      path: "/track-submission",
-      name: "track-submission",
-      component: () => import("@/views/error/TrackSubmission.vue"),
+      path: '/register',
+      name: 'register',
+      component: () => import('@/views/Register.vue'),
       meta: {
-        layout: "full",
+        layout: 'full',
+      },
+    },
+    {
+      path: '/error-404',
+      name: 'error-404',
+      component: () => import('@/views/error/Error404.vue'),
+      meta: {
+        layout: 'full',
       },
     },
 
-
+    {
+      path: '/submission-success',
+      name: 'submission-success',
+      component: () => import('@/views/error/SubmissionSuccess.vue'),
+      meta: {
+        layout: 'full',
+      },
+    },
 
     {
-      path: "*",
-      redirect: "error-404",
+      path: '/track-submission',
+      name: 'track-submission',
+      component: () => import('@/views/error/TrackSubmission.vue'),
+      meta: {
+        layout: 'full',
+      },
+    },
+
+    {
+      path: '*',
+      redirect: 'error-404',
     },
   ],
-});
+})
 
 // ? For splash screen
 // Remove afterEach hook if you are not using splash screen
 router.afterEach(() => {
   // Remove initial loading
-  const appLoading = document.getElementById("loading-bg");
+  console.log(router.currentRoute.name)
+  const appLoading = document.getElementById('loading-bg')
   if (appLoading) {
-    appLoading.style.display = "none";
+    appLoading.style.display = 'none'
   }
-});
+  if (localStorage.getItem('token') || router.currentRoute.name === 'register' || router.currentRoute.name === 'track-submission') {
+    console.log('yes')
+    // eslint-disable-next-line no-undef
+    // next()
+  } else {
+    console.log('no board')
+    router.push({
+      path: '/login',
+      replace: true,
+    })
+  }
+})
 
-export default router;
+export default router

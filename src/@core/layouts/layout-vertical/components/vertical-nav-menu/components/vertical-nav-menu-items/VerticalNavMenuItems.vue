@@ -30,7 +30,7 @@ export default {
     const resolveNavItemComponent = item => {
       if (item.header) return 'vertical-nav-menu-header'
       if (item.children) return 'vertical-nav-menu-group'
-      if (localStorage.getItem('user_role') == 2 && item.title == 'Departments') return 'd-none'
+      if (localStorage.getItem('user_role') === 'visitor' && item.title == 'Departments') return 'd-none'
       return 'vertical-nav-menu-link'
 
     }

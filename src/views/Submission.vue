@@ -1,68 +1,41 @@
 <template>
     <div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+        <div class="containe">
+            <div class="">
+                <div class="">
 
                    
-              <div class="d-flex justify-content-around overflow-auto">
-
-                  <div class="card m-1 bg-success">
-                      <div class="card-body ">
-    
-                         <h6>Registry</h6>
-    
-                      </div>
+              <div   class="scroll-card   overflow-auto  p-2">
+             
+                  <div style="height: 150px; max-width: 300px;" class="card card-body m-1 border border-primary ard   bg-success">
+                      <h6>Regist</h6>
                   </div>
 
-                  <div class="card m-1">
-                      <div class="card-body ">
-    
-                         <h6>Step 2</h6>
-    
-                      </div>
+                  <div style="height: 150px; max-width: 300px;" class="card card-body m-1 border border-primary ard bg-primary ">
+                   <h6>Regist</h6>
                   </div>
 
-                  <div class="card m-1">
-                      <div class="card-body ">
-    
-                         <h6>Step 3</h6>
-    
-                      </div>
+                  <div style="height: 150px; max-width: 300px;" class="card card-body m-1 border border-primary ard  ">
+                      <h6>Regist</h6>
                   </div>
 
-                  <div class="card m-1">
-                      <div class="card-body ">
-    
-                         <h6>Step 4</h6>
-    
-                      </div>
+                  <div style="height: 150px; max-width: 300px;" class="card card-body m-1 border border-primary ard  ">
+                      <h6>Regist</h6>
                   </div>
 
-                  <div class="card m-1">
-                      <div class="card-body ">
-    
-                         <h6>Step 2</h6>
-    
-                      </div>
+                  <div style="height: 150px; max-width: 300px;" class="card card-body m-1 border border-primary ard  ">
+                      <h6>Regist</h6>
                   </div>
 
-                  <div class="card m-1">
-                      <div class="card-body ">
-    
-                         <h6>Step 3</h6>
-    
-                      </div>
+                  <div style="height: 150px; max-width: 300px;" class="card card-body m-1 border border-primary ard  ">
+                      <h6>Regist</h6>
                   </div>
 
-                  <div class="card m-1">
-                      <div class="card-body ">
-    
-                         <h6>Step 4</h6>
-    
-                      </div>
+                  <div style="height: 150px; max-width: 300px;" class="card card-body m-1 border border-primary ard  ">
+                      <h6>Regist</h6>
                   </div>
+               
               </div>
 
 
@@ -86,4 +59,18 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.scroll-card::-webkit-scrollbar {
+  width: 16px;
+}
+
+.scroll-card::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+.scroll-card::-webkit-scrollbar-thumb {
+  background-color: #d4aa70;
+  border-radius: 100px;
+}
+</style>

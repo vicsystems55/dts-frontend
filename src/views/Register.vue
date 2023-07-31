@@ -4,9 +4,13 @@
 
       <!-- Brand logo-->
       <b-link class="brand-logo">
-        <img style="max-height: 50px;" src="@/assets/images/logo/logo.png" alt="">
+        <img
+          style="max-height: 50px;"
+          src="@/assets/images/logo/logo.png"
+          alt=""
+        >
         <h5 class="brand-text text-primary ml-1 mb-5">
-          Federal Ministry of  <br> <span class="">Finance, Budget and National Planning</span> 
+          Federal Ministry of  <br> <span class="">Finance, Budget and National Planning</span>
         </h5>
       </b-link>
       <!-- /Brand logo-->
@@ -37,13 +41,13 @@
           lg="12"
           class="px-xl-2 mx-auto"
         >
-        <b-card-title
+          <b-card-title
             title-tag="h4"
             class="font-weight-bold mb-1"
           >
-            <span class="text-success h3">Welcome to: </span> <br> Enterprise Incoming and Outgoing Mails and Documents Management System <br> 
+            <span class="text-success h3">Welcome to: </span> <br> Enterprise Incoming and Outgoing Mails and Documents Management System <br>
             <span class="text-success h6"> Tracking and Follow-Up</span>
-           
+
           </b-card-title>
           <b-card-text class="mb-2">
             Please sign-in to your account.
@@ -51,7 +55,7 @@
 
           <!-- form -->
           <validation-observer ref="loginValidation">
-            <b-form
+            <div
               class="auth-login-form mt-2"
               @submit.prevent
             >
@@ -61,12 +65,12 @@
                 label="Fullname"
                 label-for="full-name"
               >
-                  <b-form-input
-                    id="full-name"
-                    v-model="name"
-                    name="fullname"
-                    placeholder="Enter your name"
-                  />
+                <b-form-input
+                  id="full-name"
+                  v-model="name"
+                  name="fullname"
+                  placeholder="Enter your name"
+                />
               </b-form-group>
               <b-form-group
                 label="Email"
@@ -84,7 +88,7 @@
                     name="login-email"
                     placeholder="john@example.com"
                   />
-                  <small class="text-danger">{{ errors[0] }}</small>
+                  <small class="text-danger">{{ email_error }}</small>
                 </validation-provider>
               </b-form-group>
 
@@ -139,14 +143,15 @@
 
               <!-- submit buttons -->
               <b-button
-                type="submit"
+
                 variant="primary"
                 block
                 @click="validationForm"
               >
-                Sign up
+
+                {{ loading?'Please wait...':'Sign Up' }}
               </b-button>
-            </b-form>
+            </div>
           </validation-observer>
 
           <b-card-text class="text-center mt-2">
@@ -199,6 +204,7 @@
 
 <script>
 /* eslint-disable global-require */
+import axios from 'axios'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import VuexyLogo from '@core/layouts/components/Logo.vue'
 import {
@@ -235,6 +241,8 @@ export default {
       name: '',
       password: '',
       userEmail: '',
+      loading: false,
+      email_error: '',
       sideImg: require('@/assets/images/pages/login-v2.svg'),
       // validation rulesimport store from '@/store/index'
       required,
@@ -257,14 +265,42 @@ export default {
   methods: {
     validationForm() {
       this.$refs.loginValidation.validate().then(success => {
+        this.loading = true
+        // alert(process.env.VUE_APP_BACKEND_URL)
         if (success) {
-          this.$toast({
-            component: ToastificationContent,
-            props: {
-              title: 'Form Submitted',
-              icon: 'EditIcon',
-              variant: 'success',
+          axios({
+            url: `${process.env.VUE_APP_BACKEND_URL}/api/register`,
+            // url: 'http://localhost:8989/api/register',
+            method: 'post',
+            data: {
+              name: this.name,
+              password: this.password,
+              email: this.userEmail,
             },
+          }).then(res => {
+            console.log(res)
+            localStorage.setItem('user_role', res.data.user_data.role)
+            localStorage.setItem('token', res.data.access_token)
+            localStorage.setItem('user_data', JSON.stringify(res.data.user_data))
+            this.loading = false
+
+            this.$router.push('/')
+
+            this.$toast({
+              component: ToastificationContent,
+              props: {
+                title: 'Account created',
+                icon: 'EditIcon',
+                variant: 'success',
+              },
+            })
+
+            this.$router.push('/')
+          }).catch(error => {
+            this.loading = false
+            // alert(error.response.data.errors.email[0])
+            // eslint-disable-next-line prefer-destructuring
+            this.email_error = error.response.data.errors.email[0]
           })
         }
       })
