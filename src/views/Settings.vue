@@ -86,9 +86,10 @@
 
     <b-card-code title="Administrative Settings">
       <b-tabs>
-        <b-tab 
-        active
-        title="Departments">
+        <b-tab
+          active
+          title="Departments"
+        >
 
           <div class="row">
             <div class="col-md-6">
@@ -146,6 +147,7 @@
                       v-model="parent_id"
                       class="form-control"
                     >
+                    <option value="">None</option>
                       <option
                         v-for="office in offices"
                         :key="office.index"
@@ -181,7 +183,7 @@
                         <th>ABBREV.</th>
                         <th>OFFICER</th>
                         <th>HEAD</th>
-                        <th></th>
+                        <th />
 
                         <th />
                       </tr>
@@ -196,15 +198,15 @@
 
                         <td>{{ office.abbrev }}</td>
 
-                        <td >
-                            <span class="badge badge-primary">
+                        <td>
+                          <span class="badge badge-primary">
                             {{ office.officer?office.officer.name:'not assigned' }}
-                            </span>
+                          </span>
                         </td>
-                        <td >
-                            <span class="badge badge-primary">
+                        <td>
+                          <span class="badge badge-primary">
                             {{ office.parent?office.parent.name:'null' }}
-                            </span>
+                          </span>
                         </td>
 
                         <td>
@@ -213,7 +215,7 @@
                             <b-button
                               v-ripple.400="'rgba(113, 102, 240, 0.15)'"
                               v-b-modal.modal-center
-                           
+
                               class="bt-sm btn-success "
                             >
                               Edit
@@ -234,19 +236,87 @@
 
         </b-tab>
         <b-tab
-          
+
           title="User Accounts"
-        />
-        <b-tab
+        >
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="">Fullname: </label>
+              <input
+                v-model="regname"
+                type="text"
+                class="form-control"
+              >
+            </div>
+            <div class="form-group">
+              <label for="em">Email: </label>
+              <input
+              id="em"
+                v-model="email"
+                type="text"
+                class="form-control"
+              >
+              <span class="text-danger">{{ email_error }}</span>
+            </div>
+            <div class="form-group">
+              <label for="">Phone: </label>
+              <input
+                v-model="phone"
+                type="text"
+                class="form-control"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="pass">Create Password: </label>
+              <input
+              id="pass"
+                v-model="password"
+                type="text"
+                class="form-control"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="">Account type:</label>
+              <select
+                id=""
+                v-model="role"
+                name=""
+                class="form-control"
+              >
+                <option :value="'visitor'">
+                  Visitor
+                </option>
+                <option :value="'staff'">
+                  Staff
+                </option>
+
+              </select>
+            </div>
+
+            <div class="form-group mt-3">
+              <button
+                class="btn btn-primary btn-block"
+                @click="createUserAccount()"
+              >
+               {{ loadingx?'Please wait...':' Create account' }}
+              </button>
+            </div>
+
+          </div>
+
+        </b-tab>
+        <!-- <b-tab
           title="Disabled"
-          
+
         >
 
         <div class="form-group">
             <input type="text" class="form-control">
         </div>
-          
-        </b-tab>
+
+        </b-tab> -->
 
       </b-tabs>
 
@@ -291,6 +361,16 @@ export default {
       loading: false,
       users: [],
       offices: [],
+
+      regname: '',
+      email: '',
+      password: '',
+      role: '',
+      phone: '',
+
+      email_error: '',
+
+      loadingx: false
     }
   },
   mounted() {
@@ -348,6 +428,39 @@ export default {
       }).catch(error => {
         this.loading = false
         console.log(error)
+      })
+    },
+
+    createUserAccount() {
+      this.loadingx = true
+      axios({
+        url: `${process.env.VUE_APP_BACKEND_URL}/api/users`,
+        method: 'post',
+        data: {
+          name: this.regname,
+          email: this.email,
+          phone: this.phone,
+          password: this.password,
+          role: this.role,
+        },
+      }).then(res => {
+        this.loadingx = false
+        console.log(res)
+        this.$toast({
+          component: ToastificationContent,
+          props: {
+            title: 'User account created',
+            icon: 'EditIcon',
+            variant: 'success',
+          },
+        })
+        this.getUsers()
+      }).catch(error => {
+        this.loadingx = false
+        console.log(error)
+
+        this.email_error = error.response.data.errors.email[0]
+
       })
     },
   },
