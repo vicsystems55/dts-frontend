@@ -1,3 +1,5 @@
+<!-- eslint-disable camelcase -->
+<!-- eslint-disable camelcase -->
 <template>
   <div>
 
@@ -47,15 +49,86 @@
       <b-modal
         id="modal-center"
         centered
-        title="Vertically Centered"
+        title="Edit Department"
         ok-only
-        ok-title="Accept"
+        footerClass-d-none
       >
-        <b-card-text>
-          Croissant jelly-o halvah chocolate sesame snaps.
-          Brownie caramels candy canes chocolate cake marshmallow icing lollipop I love.
-          Gummies macaroon donut caramels biscuit topping danish.
-        </b-card-text>
+
+        <div class="col-md-12">
+
+          <div class="form-group">
+            <label for="">Name of office:</label>
+            <input
+              v-model="edit_name"
+              type="text"
+              class="form-control"
+            >
+          </div>
+          <div class="form-group">
+            <label for="">Abbreviation:</label>
+            <input
+              v-model="edit_abbrev"
+              type="text"
+              class="form-control"
+            >
+          </div>
+          <div class="form-group">
+            <label for="">Description:</label>
+            <input
+              v-model="edit_desc"
+              type="text"
+              class="form-control"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="">Assign:</label>
+            <select
+              id=""
+              v-model="edit_user_id"
+              class="form-control"
+            >
+              <option
+                v-for="user in users"
+                :key="user.index"
+                :value="user.id"
+              >
+                {{ user.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="">Choose Parent Office:</label>
+            <select
+              id=""
+              v-model="edit_parent_id"
+              class="form-control"
+            >
+              <option value="">
+                None
+              </option>
+              <option
+                v-for="office in offices"
+                :key="office.index"
+                :value="office.id"
+              >
+                {{ office.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <button
+              class="btn btn-primary btn-block"
+              @click="updateOffice()"
+            >
+              {{ loading?'Please wait...':'Update' }}
+            </button>
+          </div>
+
+        </div>
+
       </b-modal>
 
       <!-- modal backdrop -->
@@ -79,9 +152,6 @@
         </b-card-text>
       </b-modal>
 
-      <template #code>
-        {{ codeBasic }}
-      </template>
     </b-card-code>
 
     <b-card-code title="Administrative Settings">
@@ -147,7 +217,9 @@
                       v-model="parent_id"
                       class="form-control"
                     >
-                    <option value="">None</option>
+                      <option value="">
+                        None
+                      </option>
                       <option
                         v-for="office in offices"
                         :key="office.index"
@@ -215,8 +287,8 @@
                             <b-button
                               v-ripple.400="'rgba(113, 102, 240, 0.15)'"
                               v-b-modal.modal-center
-
                               class="bt-sm btn-success "
+                              @click="setEditValues(office.name, office.abbrev, office.officer?office.officer.name:'', office.parent?office.parent.name:'')"
                             >
                               Edit
                             </b-button>
@@ -251,7 +323,7 @@
             <div class="form-group">
               <label for="em">Email: </label>
               <input
-              id="em"
+                id="em"
                 v-model="email"
                 type="text"
                 class="form-control"
@@ -270,7 +342,7 @@
             <div class="form-group">
               <label for="pass">Create Password: </label>
               <input
-              id="pass"
+                id="pass"
                 v-model="password"
                 type="text"
                 class="form-control"
@@ -300,7 +372,7 @@
                 class="btn btn-primary btn-block"
                 @click="createUserAccount()"
               >
-               {{ loadingx?'Please wait...':' Create account' }}
+                {{ loadingx?'Please wait...':' Create account' }}
               </button>
             </div>
 
@@ -358,6 +430,13 @@ export default {
       desc: '',
       user_id: '',
       parent_id: '',
+
+      edit_name: '',
+      edit_abbrev: '',
+      edit_desc: '',
+      edit_user_id: '',
+      edit_parent_id: '',
+
       loading: false,
       users: [],
       offices: [],
@@ -370,7 +449,7 @@ export default {
 
       email_error: '',
 
-      loadingx: false
+      loadingx: false,
     }
   },
   mounted() {
@@ -460,8 +539,52 @@ export default {
         console.log(error)
 
         this.email_error = error.response.data.errors.email[0]
-
       })
+    },
+
+    updateOffice() {
+      this.loading = true
+      axios({
+        url: `${process.env.VUE_APP_BACKEND_URL}/api/offices`,
+        method: 'put',
+        data: {
+          name: this.edit_name,
+          abbrev: this.edit_abbrev,
+          desc: this.edit_desc,
+          user_id: this.edit_user_id,
+          parent_id: this.edit_parent_id,
+        },
+      }).then(res => {
+        this.loading = false
+        console.log(res)
+        this.$toast({
+          component: ToastificationContent,
+          props: {
+            title: 'Office updated',
+            icon: 'EditIcon',
+            variant: 'success',
+          },
+        })
+        this.getOffices()
+      }).catch(error => {
+        this.loading = false
+        console.log(error)
+      })
+    },
+
+    // eslint-disable-next-line camelcase
+    setEditValues(edit_name, edit_abbrev, edit_desc, edit_user_id, edit_parent_id) {
+      alert('set')
+      // eslint-disable-next-line camelcase
+      this.edit_name = edit_name
+      // eslint-disable-next-line camelcase
+      this.edit_abbrev = edit_abbrev
+      // eslint-disable-next-line camelcase
+      this.edit_desc = edit_desc
+      // eslint-disable-next-line camelcase
+      this.edit_user_id = edit_user_id
+      // eslint-disable-next-line camelcase
+      this.edit_parent_id = edit_parent_id
     },
   },
 }

@@ -23,7 +23,7 @@
       <div class="text-center mx-auto">
 
         <h4 class="btn btn-primary ">
-          {{ dashboardTitle }}
+          {{ userData.office?userData.office.name:'VISITOR' }}
         </h4>
 
       </div>
