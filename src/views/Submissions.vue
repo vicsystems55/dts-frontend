@@ -31,7 +31,7 @@
                   <tr v-for="submission,key in submissions" :key="submission.index">
                     <td>{{ key +1 }}</td>
                     <td>
-                      <router-link :to="'/submission'">
+                      <router-link :to="'/submission/'+submission.id">
                         {{submission.tracking_code}}
                       </router-link>
 

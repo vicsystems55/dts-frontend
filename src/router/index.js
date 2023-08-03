@@ -55,7 +55,7 @@ const router = new VueRouter({
     },
 
     {
-      path: '/submission',
+      path: '/submission/:id',
       name: 'submission',
       component: () => import('@/views/Submission.vue'),
       meta: {

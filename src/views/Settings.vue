@@ -288,7 +288,7 @@
                               v-ripple.400="'rgba(113, 102, 240, 0.15)'"
                               v-b-modal.modal-center
                               class="bt-sm btn-success "
-                              @click="setEditValues(office.name, office.abbrev, office.officer?office.officer.name:'', office.parent?office.parent.name:'')"
+                              @click="setEditValues(office.id, office.name, office.abbrev, office.officer?office.officer.name:'', office.parent?office.parent.name:'')"
                             >
                               Edit
                             </b-button>
@@ -431,6 +431,7 @@ export default {
       user_id: '',
       parent_id: '',
 
+      edit_office_id: '',
       edit_name: '',
       edit_abbrev: '',
       edit_desc: '',
@@ -538,6 +539,7 @@ export default {
         this.loadingx = false
         console.log(error)
 
+        // eslint-disable-next-line prefer-destructuring
         this.email_error = error.response.data.errors.email[0]
       })
     },
@@ -545,7 +547,7 @@ export default {
     updateOffice() {
       this.loading = true
       axios({
-        url: `${process.env.VUE_APP_BACKEND_URL}/api/offices`,
+        url: `${process.env.VUE_APP_BACKEND_URL}/api/offices/${this.edit_office_id}`,
         method: 'put',
         data: {
           name: this.edit_name,
@@ -573,8 +575,10 @@ export default {
     },
 
     // eslint-disable-next-line camelcase
-    setEditValues(edit_name, edit_abbrev, edit_desc, edit_user_id, edit_parent_id) {
-      alert('set')
+    setEditValues(edit_office_id, edit_name, edit_abbrev, edit_desc, edit_user_id, edit_parent_id) {
+      // alert('set')
+      // eslint-disable-next-line camelcase
+      this.edit_office_id = edit_office_id
       // eslint-disable-next-line camelcase
       this.edit_name = edit_name
       // eslint-disable-next-line camelcase
