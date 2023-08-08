@@ -144,6 +144,8 @@ export default {
 
       localStorage.removeItem('user_role')
       localStorage.removeItem('token')
+      localStorage.removeItem('user_data')
+
 
 
       this.$router.push('/login')
